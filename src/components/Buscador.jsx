@@ -32,6 +32,7 @@ export const Buscador = () => {
 
   return (
     <>
+      <h1>Buscador de Películas</h1>
       <form onSubmit={handleSubmit} >
         <Input
           type='text'
