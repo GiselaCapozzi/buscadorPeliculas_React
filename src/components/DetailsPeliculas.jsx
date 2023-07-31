@@ -10,8 +10,7 @@ export const DetailsPeliculas = () => {
     <div className={styles.container_detalle} style={{
       backgroundImage: `url(https://image.tmdb.org/t/p/original/${data.backdrop_path})`}}>
       <div className='detalles'>
-        <h1>{data.original_title}</h1>
-
+        <h1>{data.title}</h1>
       </div>
     </div>
   )

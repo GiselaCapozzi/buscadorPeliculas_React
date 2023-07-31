@@ -3,6 +3,7 @@ import { Button } from './Button';
 import { useForm } from '../hooks/useForm';
 import { useFetch } from '../hooks/useFetch';
 import { Cards } from './Cards';
+import { useFetchActual } from '../hooks/useFetchActual';
 
 export const Buscador = () => {
 
@@ -13,6 +14,7 @@ export const Buscador = () => {
   }
 
   const URL_BASE = 'https://api.themoviedb.org/3/search/movie';
+  const URL_ACTUAL = 'https://api.themoviedb.org/3/movie/now_playing'
   const API_KEY = import.meta.env.VITE_API_KEY;
 
   const {
@@ -24,11 +26,16 @@ export const Buscador = () => {
   } = useForm(initialState);
 
   const url = `${URL_BASE}?query=${busqueda}&api_key=${API_KEY}`;
+  const url_actual = `${URL_ACTUAL}?api_key=${API_KEY}&language=es-ES`;
 
   const {
     peliculas,
     handleSubmit
-  } = useFetch(url)
+  } = useFetch(url);
+
+  const {
+    actualMovie
+  } = useFetchActual(url_actual);
 
   return (
     <>
@@ -46,9 +53,14 @@ export const Buscador = () => {
         >Buscar</Button>
       </form>
       <div className="movie-list">
-        {
-          <Cards peliculas={peliculas}/>
-        }
+          <>
+            {peliculas.length < 1 ? 
+            (<Cards actualMovie={actualMovie}/>) : 
+            (
+              <Cards peliculas={peliculas}/>
+            )
+            }
+          </>        
       </div>
     </>
   )

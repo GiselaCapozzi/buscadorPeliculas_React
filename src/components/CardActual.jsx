@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { Button } from "./Button";
 import { useNavigate } from 'react-router-dom';
 
-export const Card = ({ pelicula }) => {
+export const CardActual = ({ actual }) => {
 
   const [detailsPeliculas, setDetailsPeliculas] = useState([]);
 
   const URL_DETAILS = 'https://api.themoviedb.org/3/movie';
   const API_KEY = import.meta.env.VITE_API_KEY;
-  const url_details = `${URL_DETAILS}/${pelicula.id}?api_key=${API_KEY}&language=es-ES&append_to_response=videos`;
+  const url_details = `${URL_DETAILS}/${actual.id}?api_key=${API_KEY}&language=es-ES&append_to_response=videos`;
   const navigate = useNavigate();
 
   const getDetails = async (id, url) => {
@@ -23,11 +23,11 @@ export const Card = ({ pelicula }) => {
   }
 
   useEffect(() => {
-    getDetails(pelicula.id, url_details)
+    getDetails(actual.id, url_details)
   }, [])
 
   const handleClick = async () => {
-    await getDetails(pelicula.id, url_details);
+    await getDetails(actual.id, url_details);
     navigate('/details', {
       state: detailsPeliculas
     })
@@ -36,10 +36,10 @@ export const Card = ({ pelicula }) => {
   return (
     <>
       <img
-        src={`https://image.tmdb.org/t/p/w500/${pelicula.poster_path}`}
-        alt={pelicula.title}
+        src={`https://image.tmdb.org/t/p/w500/${actual.poster_path}`}
+        alt={actual.title}
       />
-      <h2>{pelicula.title}</h2>
+      <h2>{actual.title}</h2>
       <Button
         onClick={handleClick}
       >Detalles</Button>
