@@ -30,6 +30,8 @@ export const DetailsPeliculas = () => {
             className={styles.reproductor}
             videoId={results[0].key}
             opts={{
+              width: '110%',
+              height: '300px',
               playerVars: {
                 autoplay: 0,
                 controls: 1,
