@@ -10,7 +10,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  max-width: 100vw;
+  max-width: 300vw;
   margin: 0;
 }
 
@@ -92,7 +92,7 @@ button[type='button'] {
   }
 
   .movie-list {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1px));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
 
   .movie-card {
